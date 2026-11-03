@@ -227,7 +227,9 @@
       activeCards=ids.length||generated.length||supplemental.length?[...ids.map(i=>cards[i]),...generated,...supplemental]:[{ topic:chapter, knowledge:`<b>本章学习入口已创建。</b>我会以原书本章内容为依据，整理成“知识点 - 自测题 - 解析”的卡片。`, question:'此章节的题卡尚在整理。完成已有重点章节后，可继续按目录补充本章。', options:['返回目录选择已有章节','跳过本章','查看无关内容','结束学习'], answer:0, explain:'这是章节入口。题卡内容需要按原书章节逐条提炼，避免用不属于本章的题目凑数。'}];
       index=chapterProgress.get(key)||0; $('catalog').hidden=true; $('appTitle').textContent=`${course} · ${chapter}`; $('homeButton').hidden=false; render();
     }
-    $('appTitle').onclick=()=>showCatalog(); $('homeButton').onclick=()=>showCatalog(); showCatalog();
+    $('appTitle').onclick=()=>showCatalog();
+    $('homeButton').onclick=()=>{ const course=curriculum.find(c=>c.name===activeCourse); showCatalog(course); };
+    showCatalog();
   </script>
 </body>
 </html>
